@@ -1,0 +1,84 @@
+*laundry.txt*    For Neovim >= 0.9.0    Last change: 2024 October 22
+
+================================================================================
+LAUNDRY                                                                  *laundry*
+
+A Neovim plugin for automatically folding import statements in your code.
+
+================================================================================
+CONTENTS                                                        *laundry-contents*
+
+    1. Introduction ................ |laundry-introduction|
+    2. Requirements ................ |laundry-requirements|
+    3. Setup ...................... |laundry-setup|
+    4. Commands ................... |laundry-commands|
+    5. Configuration .............. |laundry-configuration|
+
+================================================================================
+1. INTRODUCTION                                            *laundry-introduction*
+
+Laundry.nvim automatically folds import statements in your code files to reduce
+visual clutter. It supports multiple languages and is configurable to your needs.
+
+================================================================================
+2. REQUIREMENTS                                           *laundry-requirements*
+
+- Neovim >= 0.9.0
+- nvim-treesitter for your target languages
+
+================================================================================
+3. SETUP                                                        *laundry-setup*
+
+Install with your favorite package manager. Example with lazy.nvim: >
+
+    return {
+        "user/laundry.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            -- your configuration
+        },
+    }
+<
+
+Basic setup with default settings: >
+
+    require("laundry").setup()
+<
+
+================================================================================
+4. COMMANDS                                                  *laundry-commands*
+
+:LaundryFold                                                     *:LaundryFold*
+    Manually fold import statements in the current buffer.
+
+================================================================================
+5. CONFIGURATION                                        *laundry-configuration*
+
+Configure laundry.nvim by passing a table to the setup function:
+>
+    require("laundry").setup({
+        auto_fold = true,          -- Enable automatic folding
+        min_fold_lines = 4,        -- Minimum number of import lines before folding
+        enabled_filetypes = {      -- Filetypes to enable folding for
+            "typescript",
+            "typescriptreact",
+            "javascript",
+            "javascriptreact",
+        },
+    })
+<
+
+You can also configure language-specific settings in the lang_config.lua file:
+>
+    typescript = {
+        file_patterns = { "*.ts", "*.tsx" },
+        import_node_types = { "import_statement", "import_clause" },
+        aliases = { "typescriptreact" },
+        min_fold_lines = 15,      -- Language-specific minimum fold lines
+    },
+<
+
+================================================================================
+vim:ft=help:nospell:tw=78:ts=8:norl:
