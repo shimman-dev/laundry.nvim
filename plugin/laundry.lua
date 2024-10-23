@@ -1,6 +1,9 @@
--- plugin/laundry.lua
+---@type Laundry
 local laundry = require("laundry")
 
+-- Create a user command to manually trigger import folding
 vim.api.nvim_create_user_command("LaundryFold", function()
-	laundry.on_attach(0) -- 0 represents the current buffer
-end, {})
+	laundry.fold_imports()
+end, {
+	desc = "Fold import statements in the current buffer",
+})
