@@ -8,8 +8,8 @@ A Neovim plugin for automatically folding import statements in your code.
 ================================================================================
 CONTENTS                                                        *laundry-contents*
 
-    1. Introduction ................ |laundry-introduction|
-    2. Requirements ................ |laundry-requirements|
+    1. Introduction ............... |laundry-introduction|
+    2. Requirements ............... |laundry-requirements|
     3. Setup ...................... |laundry-setup|
     4. Commands ................... |laundry-commands|
     5. Configuration .............. |laundry-configuration|
@@ -18,7 +18,7 @@ CONTENTS                                                        *laundry-content
 1. INTRODUCTION                                            *laundry-introduction*
 
 Laundry.nvim automatically folds import statements in your code files to reduce
-visual clutter. It supports multiple languages and is configurable to your needs.
+visual clutter. It supports multiple languages and is configurable.
 
 ================================================================================
 2. REQUIREMENTS                                           *laundry-requirements*
@@ -29,7 +29,7 @@ visual clutter. It supports multiple languages and is configurable to your needs
 ================================================================================
 3. SETUP                                                        *laundry-setup*
 
-Install with your favorite package manager. Example with lazy.nvim: >
+Install with your package manager. Example with lazy.nvim: >
 
     return {
         "user/laundry.nvim",
@@ -60,7 +60,7 @@ Configure laundry.nvim by passing a table to the setup function:
 >
     require("laundry").setup({
         auto_fold = true,          -- Enable automatic folding
-        min_fold_lines = 4,        -- Minimum number of import lines before folding
+        min_fold_lines = 30,       -- Minimum number of import lines before folding
         enabled_filetypes = {      -- Filetypes to enable folding for
             "typescript",
             "typescriptreact",
