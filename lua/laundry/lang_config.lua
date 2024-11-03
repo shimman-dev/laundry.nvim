@@ -2,7 +2,7 @@
 ---@field file_patterns? string[] # File extensions that match this language
 ---@field import_node_types? string[] # TreeSitter node types representing import statements
 ---@field aliases? string[] # Alternative names or file types for this language
----@field min_fold_lines? integer # Minimum number of import lines before folding (optional), if not set defaults to 20 lines of code.
+---@field min_fold_lines? integer # Minimum number of import lines before folding (optional), if not set defaults to 30 lines of imports.
 
 --[[
 Note on import_node_types:
@@ -29,18 +29,18 @@ return {
 		file_patterns = { "*.ts", "*.tsx" },
 		import_node_types = { "import_statement", "import_clause" },
 		aliases = { "typescriptreact" },
-		min_fold_lines = 5,
+		min_fold_lines = 30,
 	},
 	javascript = {
 		file_patterns = { "*.js", "*.jsx" },
 		import_node_types = { "import_statement", "import_clause" },
 		aliases = { "javascriptreact" },
-		min_fold_lines = 5,
+		min_fold_lines = 30,
 	},
 	go = {
 		file_patterns = { "*.go" },
 		import_node_types = { "import_spec", "import_declaration" },
 		aliases = {},
-		min_fold_lines = 5,
+		min_fold_lines = 30,
 	},
 }
