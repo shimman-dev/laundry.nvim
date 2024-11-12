@@ -1,3 +1,5 @@
+**WIP, like 95% the way there bro**
+
 # laundry.nvim 🧺
 
 When you need to fold a lengthy stack of imports in your preferred language. 👔
@@ -15,7 +17,7 @@ When you need to fold a lengthy stack of imports in your preferred language. �
 [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how to add additional languages)
 - Configurable minimum fold thresholds
 
-## 📦 Installation
+## Installation
 
 <details>
 <summary>lazy.nvim</summary>
@@ -68,7 +70,7 @@ ignores `min_fold_lines`
 
 ## Configuration
 
-Default Options (lazy.nvim):
+Kitchen Options (lazy.nvim):
 
 ```lua
 {
@@ -131,7 +133,7 @@ require('laundry').setup({
             -- TypeScript/JavaScript might have multiple file extensions
             aliases = {},
 
-            -- Only fold when there are at least 4 import lines
+            -- Only fold when there are at least 10 import lines
             min_fold_lines = 10,
         }
     }
@@ -175,8 +177,7 @@ require('laundry').setup({
 4. Manual folding only (no auto-fold):
 ```lua
 require('laundry').setup({
-    auto_fold = false,
-    min_fold_lines = 1,  -- Fold any number of imports when using :LaundryFold
+    auto_fold = false, -- Fold when using :LaundryFoldAll
 })
 ```
 </details>
