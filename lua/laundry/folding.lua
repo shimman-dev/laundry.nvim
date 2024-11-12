@@ -17,6 +17,8 @@ function M.apply_folds(bufnr, ranges)
 		return
 	end
 
+	-- NOTE: using `nvim_set_option_value()` does not yield the same behavior
+	-- will need to investigate why
 	vim.api.nvim_buf_set_option(bufnr, "foldmethod", "manual")
 	vim.api.nvim_command("normal! zE")
 

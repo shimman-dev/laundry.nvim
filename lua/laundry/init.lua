@@ -16,8 +16,7 @@ local folding = require("laundry.folding")
 
 ---@type LaundryConfig
 local default_config = {
-	auto_fold = true,
-	min_fold_lines = 5,
+	auto_fold = false,
 	enabled_filetypes = {
 		"typescript",
 		"typescriptreact",
@@ -32,6 +31,7 @@ local default_config = {
 ---@field setup fun(opts?: table)
 ---@field on_attach fun(bufnr: integer)
 ---@field fold_imports fun()
+---@field fold_all_imports fun()
 ---@field add_language fun(lang: string, config: table)
 ---@field lang_config table<string, table>
 ---@field get_file_patterns fun(): string[]
@@ -40,7 +40,7 @@ local M = {}
 
 M.config = default_config
 
----@param opts? table
+---@param opts? LaundryConfig
 function M.setup(opts)
 	M.config = vim.tbl_deep_extend("force", default_config, opts or {})
 
@@ -76,6 +76,8 @@ end
 function M.on_attach(bufnr)
 	local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
+	-- NOTE: using `nvim_set_option_value()` does not yield the same behavior
+	-- will need to investigate why
 	vim.api.nvim_buf_set_option(bufnr, "foldmethod", "manual")
 	vim.api.nvim_buf_set_option(bufnr, "foldenable", true)
 
@@ -87,7 +89,7 @@ function M.on_attach(bufnr)
 
 	local lang_config = M.get_lang_config(filetype)
 
-	local min_fold_lines = lang_config.min_fold_lines or M.config.min_fold_lines
+	local min_fold_lines = M.config.min_fold_lines or lang_config.min_fold_lines
 
 	local total_import_lines = 0
 	for _, range in ipairs(ranges) do
@@ -104,6 +106,30 @@ function M.fold_imports()
 	local bufnr = vim.api.nvim_get_current_buf()
 	vim.b[bufnr].laundry_folded = false
 	M.on_attach(bufnr)
+end
+
+---force folds all detected imports regardless of configuration thresholds
+function M.fold_all_imports()
+	---@type integer
+	local bufnr = vim.api.nvim_get_current_buf()
+	---@type string
+	local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+
+	-- NOTE: using `nvim_set_option_value()` does not yield the same behavior
+	-- will need to investigate why
+	-- folding options
+	vim.api.nvim_buf_set_option(bufnr, "foldmethod", "manual")
+	vim.api.nvim_buf_set_option(bufnr, "foldenable", true)
+
+	---@type table[]|nil
+	local ranges = parser.get_import_ranges(bufnr)
+
+	if not ranges or #ranges == 0 then
+		return
+	end
+
+	-- Simply apply the folds without any checks
+	folding.apply_folds(bufnr, ranges)
 end
 
 M.add_language = parser.add_language
