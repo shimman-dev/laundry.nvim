@@ -1,4 +1,4 @@
-**WIP, like 95% the way there bro**
+⚠️ **WIP, like 95% the way there bro** ⚠️
 
 # laundry.nvim 🧺
 
