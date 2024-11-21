@@ -79,7 +79,7 @@ Kitchen Options (lazy.nvim):
         "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-		-- NOTE: not initially set to true, most opt-in the plugin
+		-- NOTE: not initially set to true, must opt-in the plugin
         -- Whether to automatically fold imports when opening files
         auto_fold = false,
 
@@ -100,7 +100,7 @@ Kitchen Options (lazy.nvim):
         languages = {
             -- Override settings for TypeScript
             typescript = {
-                min_fold_lines = 10,  -- Only fold if 10+ lines of imports
+                min_fold_lines = 10,  -- Only fold if there are >=10 lines of imports
             },
         },
     }
@@ -133,7 +133,7 @@ require('laundry').setup({
             -- TypeScript/JavaScript might have multiple file extensions
             aliases = {},
 
-            -- Only fold when there are at least 10 import lines
+            -- Only fold when there are >=10 import lines
             min_fold_lines = 10,
         }
     }
