@@ -6,6 +6,8 @@ When you need to fold a lengthy stack of imports in your preferred language. ðŸ‘
 
 ## Requirements
 
+[passed on my first audition](https://www.youtube.com/watch?v=8coWvoSgrOs#t=1m29s)
+
 - [Neovim >= 0.9.0](https://neovim.io/)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
@@ -190,3 +192,4 @@ require('laundry').setup({
 - [ ] create a benchmark tests (1k, 10k, 100k, 1000k imports)
 - [ ] create a basic unit test suite
 - [ ] make a video explaining why this was done
+- [ ] in a future neovim release, [folding can be handled via the LSP](https://github.com/neovim/neovim/pull/31311) will need to account for this change
