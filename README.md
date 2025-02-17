@@ -72,7 +72,7 @@ ignores `min_fold_lines`
 
 ## Configuration
 
-Kitchen Options (lazy.nvim):
+Everything but the kitchen sink options (lazy.nvim):
 
 ```lua
 {
