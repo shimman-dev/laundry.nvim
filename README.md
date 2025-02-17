@@ -2,7 +2,7 @@
 
 When you need to fold a lengthy stack of imports in your preferred language. 👔
 
-[pinny doing laundry](./assets/pinny-laundry-nvim.png)
+![pinny doing laundry](./assets/pinny-laundry-nvim.png)
 
 ## Requirements
 
