@@ -42,16 +42,23 @@ Install with your package manager. Example with lazy.nvim: >
     }
 <
 
-Basic setup with default settings: >
+You need to opt-in to allow automatic folding. Basic setup with default
+settings: >
 
-    require("laundry").setup()
+    require("laundry").setup({
+        auto_fold = true,
+    })
 <
 
 ================================================================================
 4. COMMANDS                                                  *laundry-commands*
 
-:LaundryFold                                                     *:LaundryFold*
-    Manually fold import statements in the current buffer.
+:LaundryFold                                                 *:LaundryFold*
+    Manually trigger import folding, respects `min_fold_lines
+
+:LaundryForceFold                                            *:LaundryForceFold*
+    Manually trigger import folding, ignores `min_fold_lines
+
 
 ================================================================================
 5. CONFIGURATION                                        *laundry-configuration*

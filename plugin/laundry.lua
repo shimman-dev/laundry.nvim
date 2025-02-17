@@ -9,7 +9,7 @@ end, {
 })
 
 -- Manually trigger import folding, ignores `min_fold_lines`
-vim.api.nvim_create_user_command("LaundryFoldAll", function()
+vim.api.nvim_create_user_command("LaundryForceFold", function()
 	laundry.fold_all_imports()
 end, {
 	desc = "Fold import statements in the current buffer, ignoring min_fold_lines",
