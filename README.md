@@ -1,8 +1,8 @@
-⚠️ **WIP, like 95% the way there bro** ⚠️
-
 # laundry.nvim 🧺
 
 When you need to fold a lengthy stack of imports in your preferred language. 👔
+
+[pinny doing laundry](./assets/pinny-laundry-nvim.png)
 
 ## Requirements
 
@@ -62,7 +62,7 @@ use {
 
 - `:LaundryFold` - Manually fold import statements in the current buffer,
 respects `min_fold_lines`
-- `:LaundryFoldAll` - Manually fold import statements in the current buffer,
+- `:LaundryForceFold` - Manually fold import statements in the current buffer,
 ignores `min_fold_lines`
 
 ## Notes
@@ -156,6 +156,13 @@ To find the correct `TreeSitter` node types for other languages:
 require('laundry').setup()
 ```
 
+1. Opt-in auto-folding:
+```lua
+require('laundry').setup({
+    auto_fold = true,
+})
+```
+
 2. Auto-fold with custom threshold:
 ```lua
 require('laundry').setup({
@@ -179,17 +186,25 @@ require('laundry').setup({
 4. Manual folding only (no auto-fold):
 ```lua
 require('laundry').setup({
-    auto_fold = false, -- Fold when using :LaundryFoldAll
+    auto_fold = false, -- Fold when using :LaundryForceFold
 })
 ```
 </details>
 
+## Current Language Support
+
+<details>
+<summary>Language Support Matrix</summary>
+
+- [Go](https://go.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+</details>
+
 ## Todo
 
-- [ ] whimmsy up the `README.md`
-- [ ] create an art icon
-- [ ] create a `CONTRIBUTING.md`
-- [ ] create a benchmark tests (1k, 10k, 100k, 1000k imports)
+- [x] whimmsy up the `README.md`
+- [x] create an art icon
+- [x] create a `CONTRIBUTING.md`
+- [ ] create a benchmark tests (folding 1k, 10k, 100k, 1000k imports)
 - [ ] create a basic unit test suite
-- [ ] make a video explaining why this was done
-- [ ] in a future neovim release, [folding can be handled via the LSP](https://github.com/neovim/neovim/pull/31311) will need to account for this change
+- [ ] in a future neovim release: [folding can be handled via the LSP](https://github.com/neovim/neovim/pull/31311) will need to account for this change. Will need to handle `LSP` and `treesitter` options.
